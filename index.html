@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư Giãn Đầu Óc</title>
+    <style>
+      :root {
+        --main-bg: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+        --main-bg-dark: linear-gradient(120deg, #232526 0%, #414345 100%);
+        --box-bg: rgba(255, 255, 255, 0.85);
+        --box-bg-dark: rgba(34, 34, 34, 0.95);
+        --main-color: #ff6f61;
+        --main-color-dark: #f9d423;
+        --text-dark: #fff;
+        --text-light: #333;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: var(--main-bg);
+        background-size: 200% 200%;
+        animation: bgmove 10s ease-in-out infinite alternate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: background 1s;
+        overflow: hidden;
+      }
+      body.dark {
+        background: var(--main-bg-dark);
+      }
+      @keyframes bgmove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+      .relax-box {
+        background: var(--box-bg);
+        border-radius: 32px;
+        box-shadow: 0 12px 48px #0002, 0 2px 8px #fed6e3;
+        padding: 48px 36px 36px 36px;
+        text-align: center;
+        max-width: 420px;
+        min-width: 320px;
+        animation: fadeIn 1.2s;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.5s;
+      }
+      .relax-box.shake {
+        animation: shake 0.4s;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translateX(-8px);
+        }
+        40% {
+          transform: translateX(8px);
+        }
+        60% {
+          transform: translateX(-8px);
+        }
+        80% {
+          transform: translateX(8px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      body.dark .relax-box {
+        background: var(--box-bg-dark);
+        box-shadow: 0 12px 48px #0008, 0 2px 8px #232526;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      h1 {
+        color: var(--main-color);
+        margin-bottom: 18px;
+        font-size: 2.3rem;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 12px #fed6e3aa;
+        transition: color 0.5s;
+      }
+      body.dark h1 {
+        color: var(--main-color-dark);
+        text-shadow: 0 2px 12px #232526aa;
+      }
+      .quote {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        margin: 28px 0 24px 0;
+        min-height: 60px;
+        transition: color 0.3s, opacity 0.4s;
+        opacity: 1;
+      }
+      body.dark .quote {
+        color: var(--text-dark);
+      }
+      .quote.fade {
+        opacity: 0;
+      }
+      .wish {
+        font-size: 1.1rem;
+        color: #ff6f61;
+        margin-bottom: 10px;
+        min-height: 24px;
+        font-style: italic;
+        transition: color 0.3s;
+      }
+      body.dark .wish {
+        color: #f9d423;
+      }
+      button,
+      .toggle-btn,
+      .effect-btn {
+        background: linear-gradient(90deg, #ff6f61 0%, #f9d423 100%);
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        padding: 14px 36px;
+        font-size: 1.15rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 16px #ff6f6133;
+        transition: background 0.2s, transform 0.2s, color 0.2s;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      button:hover,
+      .toggle-btn:hover,
+      .effect-btn:hover {
+        background: linear-gradient(90deg, #f9d423 0%, #ff6f61 100%);
+        color: #ff6f61;
+        transform: scale(1.07);
+      }
+      .effect-btn {
+        position: absolute;
+        bottom: 18px;
+        right: 18px;
+        width: auto;
+        padding: 8px 18px;
+        font-size: 1rem;
+        border-radius: 18px;
+        z-index: 2;
+      }
+      .emoji {
+        font-size: 3rem;
+        margin-bottom: 12px;
+        animation: bounce 2s infinite, emojiSpin 3s infinite alternate;
+        display: inline-block;
+        transition: filter 0.3s, background 0.5s;
+        filter: drop-shadow(0 2px 8px #fed6e3);
+        border-radius: 50%;
+        padding: 10px;
+        background: linear-gradient(135deg, #fffbe6 0%, #ffe0f7 100%);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-16px);
+        }
+      }
+      @keyframes emojiSpin {
+        0% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(10deg);
+        }
+      }
+      .music-btn {
+        position: absolute;
+        top: 18px;
+        right: 68px;
+        background: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px #fed6e3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        transition: background 0.2s;
+      }
+      .music-btn:hover {
+        background: #f9d423;
+        color: #fff;
+      }
+      .toggle-btn {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        padding: 0;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.7);
+        color: #ff6f61;
+        box-shadow: 0 2px 8px #fed6e3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .toggle-btn:hover {
+        background: #232526;
+        color: #fff;
+      }
+      .footer {
+        margin-top: 36px;
+        color: #888;
+        font-size: 1rem;
+        text-align: center;
+        text-shadow: 0 1px 4px #fff8;
+      }
+      .clock {
+        font-size: 1.1rem;
+        color: #888;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        font-family: monospace;
+        transition: color 0.5s;
+      }
+      body.dark .clock {
+        color: #fff;
+      }
+      /* Firework effect */
+      .firework {
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .firework span {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: linear-gradient(90deg, #ff6f61, #f9d423, #a8edea, #fed6e3);
+        opacity: 0.8;
+        animation: explode 0.7s linear forwards;
+      }
+      @keyframes explode {
+        to {
+          transform: translate(var(--x), var(--y)) scale(0.7);
+          opacity: 0;
+        }
+      }
+      /* Rain effect */
+      .rain {
+        pointer-events: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+      }
+      .raindrop {
+        position: absolute;
+        width: 2px;
+        height: 18px;
+        background: linear-gradient(to bottom, #a8edea 0%, #fed6e3 100%);
+        opacity: 0.5;
+        border-radius: 1px;
+        animation: raindrop 1.2s linear infinite;
+      }
+      @keyframes raindrop {
+        0% {
+          transform: translateY(-30px);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+      /* Bubble effect */
+      .bubble {
+        position: absolute;
+        bottom: 0;
+        border-radius: 50%;
+        opacity: 0.4;
+        animation: bubbleUp 4s linear infinite;
+        background: radial-gradient(circle, #fffbe6 60%, #fed6e3 100%);
+      }
+      @keyframes bubbleUp {
+        0% {
+          transform: translateY(0) scale(0.7);
+        }
+        100% {
+          transform: translateY(-100vh) scale(1.2);
+        }
+      }
+      /* Shooting star effect */
+      .star {
+        position: absolute;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #fff, transparent);
+        opacity: 0.7;
+        border-radius: 2px;
+        animation: shooting 1.2s linear infinite;
+      }
+      @keyframes shooting {
+        0% {
+          transform: translateX(-80px) translateY(0);
+        }
+        100% {
+          transform: translateX(100vw) translateY(60px);
+        }
+      }
+      .music-visualizer {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        height: 32px;
+        width: 120px;
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .music-bar {
+        width: 8px;
+        background: linear-gradient(180deg, #f9d423 0%, #ff6f61 100%);
+        border-radius: 4px;
+        animation: musicBar 1s infinite;
+      }
+      .music-bar:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .music-bar:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .music-bar:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .music-bar:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      @keyframes musicBar {
+        0%,
+        100% {
+          height: 8px;
+        }
+        50% {
+          height: 32px;
+        }
+      }
+      .toast {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff6f61;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 18px;
+        font-size: 1.1rem;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 100;
+        transition: opacity 0.4s;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+      .emoji.rumble {
+        animation: rumble 0.5s;
+      }
+      @keyframes rumble {
+        0%,
+        100% {
+          transform: rotate(0);
+        }
+        20% {
+          transform: rotate(-15deg);
+        }
+        40% {
+          transform: rotate(10deg);
+        }
+        60% {
+          transform: rotate(-10deg);
+        }
+        80% {
+          transform: rotate(15deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rain" id="rain"></div>
+    <div class="relax-box" id="relaxBox">
+      <button
+        class="toggle-btn"
+        id="toggleTheme"
+        title="Chuyển chế độ sáng/tối"
+      >
+        🌙
+      </button>
+      <button class="music-btn" id="musicBtn" title="Bật/tắt nhạc">🎵</button>
+      <button class="effect-btn" id="effectBtn" title="Đổi hiệu ứng nền">
+        🌧️
+      </button>
+      <div class="music-visualizer" id="musicVisualizer"></div>
+      <div class="toast" id="toast"></div>
+      <div class="clock" id="clock"></div>
+      <div class="wish" id="wish"></div>
+      <div class="emoji" id="emoji">😄</div>
+      <div class="quote" id="quote">
+        Nhấn nút bên dưới để nhận để xem điều thú vị!
+      </div>
+      <button onclick="randomQuote()">Open</button>
+      <audio id="bgMusic" loop>
+        <source src="/zettezet.mp3" type="audio/mp3" />
+      </audio>
+    </div>
+    <div class="footer">&copy; 2025 zettezet | Hãy luôn vui vẻ mỗi ngày!</div>
+    <script>
+      // Quotes & Emojis & Wishes
+      const quotes = [
+        "Mọi chuyện rồi sẽ ổn, nếu chưa ổn, nghĩa là chưa phải kết thúc.",
+        "Thở sâu, mọi thứ rồi cũng sẽ qua thôi.",
+        "Không ai có thể làm bạn cảm thấy thấp kém nếu không có sự cho phép của bạn.",
+        "Tâm an thì vạn sự an.",
+        "Một ngày tồi tệ không có nghĩa là một cuộc đời tồi tệ.",
+        "Đôi khi điều tốt nhất bạn có thể làm là không suy nghĩ, không lo lắng, chỉ hít thở và tin tưởng.",
+        "Hạnh phúc không đến từ những gì bạn có, mà từ cách bạn cảm nhận về những gì bạn có.",
+        "Đừng để tâm trí bạn sống trong quá khứ hay tương lai. Sống ở hiện tại là món quà quý giá nhất.",
+        "Bạn xứng đáng được nghỉ ngơi, không cần lý do.",
+        "Không ai mạnh mẽ suốt đời. Có lúc cũng cần được yếu mềm.",
+        "Cứ chậm rãi mà sống, hoa cũng không nở vội vàng.",
+        "Tĩnh lặng là sức mạnh. Khi tâm trí bạn lặng yên, bạn nghe rõ được tiếng lòng mình.",
+        "Hãy dành thời gian cho những điều khiến bạn mỉm cười.",
+        "Đừng cố gắng kiểm soát mọi thứ. Hãy để cuộc sống tự nhiên hơn một chút.",
+        "Hãy tử tế với chính mình. Bạn đang làm tốt nhất có thể rồi.",
+      ];
+      const emojis = [
+        "😄",
+        "😎",
+        "🤩",
+        "🥳",
+        "😇",
+        "😌",
+        "🧘‍♂️",
+        "🌈",
+        "☁️",
+        "🐱",
+        "🐧",
+        "🦄",
+        "🍀",
+        "🌻",
+        "🎈",
+        "🐶",
+        "🐼",
+        "🐸",
+        "🦋",
+        "🐦",
+        "🦜",
+        "🌞",
+        "🌙",
+        "⭐",
+        "🍉",
+        "🍦",
+        "🍩",
+        "🍕",
+        "🍔",
+        "🍟",
+      ];
+      const wishes = [
+        "Chúc bạn một ngày thật vui vẻ!",
+        "Mọi điều tốt đẹp sẽ đến với bạn!",
+        "Chúc bạn luôn mỉm cười!",
+        "Chúc bạn bình an và hạnh phúc!",
+        "Chúc bạn thành công trong mọi việc!",
+        "Chúc bạn luôn mạnh khỏe!",
+        "Chúc bạn có nhiều năng lượng tích cực!",
+        "Chúc bạn gặp nhiều may mắn!",
+        "Chúc bạn luôn tự tin và yêu đời!",
+        "Chúc bạn tận hưởng từng khoảnh khắc!",
+      ];
+      // Hiệu ứng nền
+      let effectIndex = 0;
+      const effects = ["rain", "bubble", "star"];
+      function clearEffects() {
+        document.getElementById("rain").innerHTML = "";
+        document.querySelectorAll(".bubble").forEach((e) => e.remove());
+        document.querySelectorAll(".star").forEach((e) => e.remove());
+      }
+      function createRain() {
+        const rain = document.getElementById("rain");
+        rain.innerHTML = "";
+        for (let i = 0; i < 40; i++) {
+          const drop = document.createElement("div");
+          drop.className = "raindrop";
+          drop.style.left = Math.random() * 100 + "vw";
+          drop.style.animationDelay = Math.random() + "s";
+          rain.appendChild(drop);
+        }
+      }
+      function createBubble() {
+        for (let i = 0; i < 20; i++) {
+          const bubble = document.createElement("div");
+          bubble.className = "bubble";
+          bubble.style.left = Math.random() * 100 + "vw";
+          bubble.style.width = bubble.style.height =
+            10 + Math.random() * 30 + "px";
+          bubble.style.animationDelay = Math.random() * 4 + "s";
+          document.body.appendChild(bubble);
+        }
+      }
+      function createStar() {
+        for (let i = 0; i < 8; i++) {
+          const star = document.createElement("div");
+          star.className = "star";
+          star.style.top = Math.random() * 60 + 10 + "vh";
+          star.style.left = -80 + Math.random() * 40 + "px";
+          star.style.animationDelay = Math.random() + "s";
+          document.body.appendChild(star);
+        }
+      }
+      function switchEffect() {
+        clearEffects();
+        effectIndex = (effectIndex + 1) % effects.length;
+        if (effects[effectIndex] === "rain") createRain();
+        if (effects[effectIndex] === "bubble") createBubble();
+        if (effects[effectIndex] === "star") createStar();
+        document.getElementById("effectBtn").textContent =
+          effects[effectIndex] === "rain"
+            ? "🌧️"
+            : effects[effectIndex] === "bubble"
+            ? "🫧"
+            : "🌠";
+      }
+      // Firework effect
+      function firework() {
+        const box = document.querySelector(".relax-box");
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.left = "50%";
+        fw.style.top = "60%";
+        for (let i = 0; i < 16; i++) {
+          const span = document.createElement("span");
+          const angle = (i / 16) * 2 * Math.PI;
+          const r = 80 + Math.random() * 30;
+          span.style.setProperty("--x", `${Math.cos(angle) * r}px`);
+          span.style.setProperty("--y", `${Math.sin(angle) * r}px`);
+          fw.appendChild(span);
+        }
+        box.appendChild(fw);
+        setTimeout(() => fw.remove(), 700);
+      }
+      // Đếm số lần bấm
+      let count = 0;
+      function randomQuote() {
+        const quoteEl = document.getElementById("quote");
+        const emojiEl = document.getElementById("emoji");
+        const wishEl = document.getElementById("wish");
+        const relaxBox = document.getElementById("relaxBox");
+        quoteEl.classList.add("fade");
+        relaxBox.classList.add("shake");
+        emojiEl.classList.add("rumble");
+        setTimeout(() => {
+          const quote = quotes[Math.floor(Math.random() * quotes.length)];
+          quoteEl.textContent = quote;
+          quoteEl.classList.remove("fade");
+          // Đổi emoji ngẫu nhiên
+          emojiEl.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+          emojiEl.classList.remove("rumble");
+          // Đổi màu nền emoji
+          emojiEl.style.background = `linear-gradient(135deg, #${Math.floor(
+            Math.random() * 0xffffff
+          )
+            .toString(16)
+            .padStart(6, "0")} 0%, #${Math.floor(Math.random() * 0xffffff)
+            .toString(16)
+            .padStart(6, "0")} 100%)`;
+          // Đổi nền trang
+          document.body.style.background = `linear-gradient(120deg, #${Math.floor(
+            Math.random() * 0xffffff
+          )
+            .toString(16)
+            .padStart(6, "0")} 0%, #${Math.floor(Math.random() * 0xffffff)
+            .toString(16)
+            .padStart(6, "0")} 100%)`;
+          // Pháo hoa
+          firework();
+          // Lời chúc ngẫu nhiên
+          wishEl.textContent =
+            wishes[Math.floor(Math.random() * wishes.length)];
+          // Confetti khi đạt mốc đặc biệt
+          if ([5, 10, 20, 50, 100].includes(count)) confetti();
+        }, 400);
+      }
+      // Nhạc nền
+      const musicBtn = document.getElementById("musicBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      let playing = false;
+      musicBtn.onclick = function () {
+        if (!playing) {
+          bgMusic.volume = 0.25;
+          bgMusic.play();
+          musicBtn.textContent = "🎵";
+        } else {
+          bgMusic.pause();
+          musicBtn.textContent = "🔇";
+        }
+        playing = !playing;
+      };
+      // Đồng hồ
+      function updateClock() {
+        const now = new Date();
+        document.getElementById("clock").textContent =
+          now.toLocaleTimeString("vi-VN");
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+      // Chuyển chế độ sáng/tối
+      const toggleTheme = document.getElementById("toggleTheme");
+      let dark = false;
+      toggleTheme.onclick = function () {
+        dark = !dark;
+        document.body.classList.toggle("dark", dark);
+        toggleTheme.textContent = dark ? "☀️" : "🌙";
+      };
+      // Đổi hiệu ứng nền
+      document.getElementById("effectBtn").onclick = switchEffect;
+      // Khởi tạo hiệu ứng nền mặc định
+      createRain();
+      document.getElementById("effectBtn").textContent = "🌧️";
+      // Lời chúc đầu tiên
+      document.getElementById("wish").textContent =
+        wishes[Math.floor(Math.random() * wishes.length)];
+      // Music visualizer
+      const musicVisualizer = document.getElementById("musicVisualizer");
+      for (let i = 0; i < 5; i++) {
+        const bar = document.createElement("div");
+        bar.className = "music-bar";
+        musicVisualizer.appendChild(bar);
+      }
+      musicVisualizer.style.display = "none";
+      musicBtn.addEventListener("click", function () {
+        musicVisualizer.style.display = playing ? "flex" : "none";
+      });
+
+      // Toast notification
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      }
+
+      // Confetti effect
+      function confetti() {
+        for (let i = 0; i < 30; i++) {
+          const conf = document.createElement("div");
+          conf.style.position = "fixed";
+          conf.style.left = Math.random() * 100 + "vw";
+          conf.style.top = "-20px";
+          conf.style.width = conf.style.height = 6 + Math.random() * 8 + "px";
+          conf.style.background = `hsl(${Math.random() * 360},90%,60%)`;
+          conf.style.borderRadius = "50%";
+          conf.style.opacity = 0.8;
+          conf.style.zIndex = 999;
+          conf.style.transition =
+            "transform 1.2s cubic-bezier(.4,2,.6,1), opacity 1.2s";
+          document.body.appendChild(conf);
+          setTimeout(() => {
+            conf.style.transform = `translateY(${
+              80 + Math.random() * 40
+            }vh) rotate(${Math.random() * 360}deg)`;
+            conf.style.opacity = 0;
+          }, 10);
+          setTimeout(() => conf.remove(), 1300);
+        }
+      }
+    </script>
+  </body>
+</html>
